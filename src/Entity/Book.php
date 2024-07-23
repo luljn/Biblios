@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\BookStatus;
 use App\Repository\BookRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,6 +26,9 @@ class Book
 
     #[ORM\Column]
     private ?int $pageNumber = null;
+
+    #[ORM\Column(length: 255)]
+    private ?BookStatus $status = null;
 
     #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private ?\DateTimeImmutable $editedAt = null;
@@ -87,6 +91,18 @@ class Book
     public function setPageNumber(int $pageNumber): static
     {
         $this->pageNumber = $pageNumber;
+
+        return $this;
+    }
+
+    public function getStatus(): ?BookStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(BookStatus $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
