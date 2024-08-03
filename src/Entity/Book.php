@@ -36,12 +36,6 @@ class Book
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $plot = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $authors = [];
-
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private ?array $comments = null;
-
     #[ORM\ManyToOne(inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Editor $editor = null;
@@ -131,30 +125,6 @@ class Book
     public function setPlot(?string $plot): static
     {
         $this->plot = $plot;
-
-        return $this;
-    }
-
-    public function getAuthors(): array
-    {
-        return $this->authors;
-    }
-
-    public function setAuthors(array $authors): static
-    {
-        $this->authors = $authors;
-
-        return $this;
-    }
-
-    public function getComments(): ?array
-    {
-        return $this->comments;
-    }
-
-    public function setComments(?array $comments): static
-    {
-        $this->comments = $comments;
 
         return $this;
     }
