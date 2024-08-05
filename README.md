@@ -11,6 +11,7 @@ A web application for catalog management of a media library.
 - Symfony
 - Twig
 - Doctrine
+- Bootstrap
 - PostgreSql
 
 ## Author
