@@ -22,26 +22,40 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('isbn', TextType::class)
-            ->add('cover', UrlType::class)
-            ->add('pageNumber', NumberType::class)
+            ->add('title', TextType::class, [
+                'label' => 'Titre',
+            ])
+            ->add('isbn', TextType::class, [
+                'label' => 'Numéro ISBN',
+            ])
+            ->add('cover', UrlType::class, [
+                'label' => 'Couverture (lien URL)',
+            ])
+            ->add('pageNumber', NumberType::class, [
+                'label' => 'Nombre de pages',
+            ])
             ->add('status', EnumType::class, [
-                'class' => BookStatus::class
+                'class' => BookStatus::class,
+                'label' => 'Statut',
             ])
             ->add('editedAt', DateType::class, [
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
+                'label' => "Date d'édition",
             ])
-            ->add('plot', TextareaType::class)
+            ->add('plot', TextareaType::class, [
+                'label' => 'Synopsis',
+            ])
             ->add('editor', EntityType::class, [
                 'class' => Editor::class,
                 'choice_label' => 'id',
+                'label' => 'Editeur',
             ])
             ->add('authors', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'label' => 'Autheur(s)',
             ])
         ;
     }
