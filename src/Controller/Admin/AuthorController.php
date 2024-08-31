@@ -44,4 +44,12 @@ class AuthorController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('', name: 'app_admin_author_show', methods: ['GET'])]
+    public function show() : Response
+    {
+        return $this->render('admin/author/show.html.twig', [
+
+        ]);
+    }
 }
