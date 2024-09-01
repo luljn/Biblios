@@ -16,6 +16,28 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    // To find an author by his date of birth.
+    public function findByDateOfBirth(array $dates = []): array
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        if(\array_key_exists('start', $dates)){
+            
+            $qb->andWhere('a.dateOfBirth >= :start')
+                ->setParameter('start', new \DateTimeImmutable($dates['start']));
+        }
+
+        if(\array_key_exists('end', $dates)){
+            
+            $qb->andWhere('a.dateOfBirth <= :end')
+                ->setParameter('end', new \DateTimeImmutable($dates['end']));
+        }
+
+        return $qb->orderBy('a.dateOfBirth', 'DESC')
+                ->getQuery()
+                ->getResult();
+    }
+
 //    /**
 //     * @return Author[] Returns an array of Author objects
 //     */
