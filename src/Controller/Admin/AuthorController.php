@@ -6,6 +6,8 @@ use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +32,11 @@ class AuthorController extends AbstractController
         }
 
         // $authors = $repository->findAll();
-        $authors = $repository->findByDateOfBirth($dates);
+        $authors = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            new QueryAdapter($repository->findByDateOfBirth()),
+            $request->query->get('page', default: 1),
+            maxPerPage: 10
+        );
 
         return $this->render('admin/author/index.html.twig', [
             'controller_name' => 'AuthorController',
