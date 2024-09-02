@@ -27,7 +27,6 @@ class BookController extends AbstractController
         );
 
         return $this->render('admin/book/index.html.twig', [
-            'controller_name' => 'BookController',
             'books' => $books,
         ]);
     }
