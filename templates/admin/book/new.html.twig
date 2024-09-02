@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajout de livre{% endblock %}
+{% set action = app.current_route == 'app_admin_book_new' ? 'Ajout' : 'Edition' %}
+
+{% block title %}{{ action }} de livre{% endblock %}
 
 {% block body %}
     <style>
@@ -9,7 +11,7 @@
     </style>
     
     <div class="w-50 m-auto">
-        <h1>Ajout de livre</h1>
+        <h1>{{ action }} de livre</h1>
         
         {{ form_start(form) }}
             {{ form_widget(form) }}
