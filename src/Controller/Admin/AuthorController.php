@@ -49,6 +49,10 @@ class AuthorController extends AbstractController
     #[Route('/{id}/edit', name: 'app_admin_author_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function new(?Author $author, Request $request, EntityManagerInterface $manager): Response
     {
+        if(null == $author){
+
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        }
         $author ??= new Author();
         $form = $this->createForm(AuthorType::class, $author);
 

@@ -9,6 +9,12 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+    role_hierarchy:
+        ROLE_USER: ~
+        ROLE_MODERATEUR: ROLE_USER
+        ROLE_AJOUT_DE_LIVRE: ROLE_USER
+        ROLE_EDITION_DE_LIVRE: ROLE_AJOUT_DE_LIVRE
+        ROLE_ADMIN: [ROLE_MODERATEUR, ROLE_EDITION_DE_LIVRE]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
