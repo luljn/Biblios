@@ -14,8 +14,8 @@ final class MaintenanceListener
 
     public function __construct(private readonly Environment $twig)
     {
-        
     }
+    
     #[AsEventListener(event: KernelEvents::REQUEST, priority: 2000)]
     public function onKernelRequest(RequestEvent $event): void
     {
