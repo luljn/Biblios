@@ -35,7 +35,7 @@ final class EditorFactory extends PersistentProxyObjectFactory{
     protected function defaults(): array|callable
     {
         return [
-            'name' => self::faker()->text(255),
+            'name' => self::faker()->company(),
         ];
     }
 
